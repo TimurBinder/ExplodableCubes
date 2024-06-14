@@ -4,8 +4,8 @@ using UnityEngine;
 public class ExplodingBlock : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float _cloningChance;
-    [SerializeField] private int _explodeForce;
-    [SerializeField] private int _explodeRadius;
+    [SerializeField] private int _explosionForce;
+    [SerializeField] private int _explosionRadius;
     [SerializeField] private ParticleSystem _effect;
     [SerializeField] private ExplodingBlock _prefab;
 
@@ -23,7 +23,7 @@ public class ExplodingBlock : MonoBehaviour
 
         if (Random.Range(_minCloningChance, _maxCloningChance) < _cloningChance)
             explodableObjects = GetClones();
-            
+
         Explode(explodableObjects);
     }
 
@@ -37,7 +37,7 @@ public class ExplodingBlock : MonoBehaviour
             foreach (var block in explodableObjects)
             {
                 if (block.GetComponent<Rigidbody>() != null)
-                    block.GetComponent<Rigidbody>().AddExplosionForce(_explodeForce, block.transform.position, _explodeRadius);
+                    block.GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, block.transform.position, _explosionRadius);
             }
         }
 

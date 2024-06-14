@@ -425,13 +425,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3925032, y: -0, z: -0, w: 0.91975063}
-  m_LocalPosition: {x: 0, y: 6.37, z: -5.81}
+  m_LocalRotation: {x: 0.2216445, y: -0, z: -0, w: 0.9751276}
+  m_LocalPosition: {x: 0, y: 5.56, z: -11.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 46.221, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.611, y: 0, z: 0}
 --- !u!1 &991338310
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1339427560}
   - component: {fileID: 1339427562}
   - component: {fileID: 1339427561}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,8 +731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cloningChance: 100
-  _explodeForce: 25
-  _explodeRadius: 50
+  _explosionForce: 70
+  _explosionRadius: 100
   _effect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _prefab: {fileID: 1824722662}
 --- !u!65 &1824722663
