@@ -17,6 +17,13 @@ public class ExplodingBlock : MonoBehaviour
     private int _cloningChanceDivider = 2;
     private int _scaleDivider = 2;
 
+    public void Enable()
+    {
+        gameObject.GetComponent<Renderer>().material.color = new(Random.value, Random.value, Random.value);
+        gameObject.transform.localScale /= _scaleDivider;
+        _cloningChance /= _cloningChanceDivider;
+    }
+
     private void OnMouseUpAsButton()
     {
         List<ExplodingBlock> explodableObjects = null;
@@ -52,19 +59,7 @@ public class ExplodingBlock : MonoBehaviour
         for (int i = 0; i < clonesCount; i++)
         {
             ExplodingBlock clone = Instantiate(_prefab);
-
-            float cloneScaleX = gameObject.transform.localScale.x / _scaleDivider;
-            float cloneScaleY = gameObject.transform.localScale.y / _scaleDivider;
-            float cloneScaleZ = gameObject.transform.localScale.z / _scaleDivider;
-            
-            Color cloneColor = new (Random.value, Random.value, Random.value);
-
-            Debug.Log(cloneColor);
-
-            clone.transform.localScale = new Vector3(cloneScaleX, cloneScaleY, cloneScaleZ);
-            clone.GetComponent<Renderer>().material.color = cloneColor;
-            clone._cloningChance = _cloningChance / _cloningChanceDivider;
-
+            clone.Enable();
             clones.Add(clone);
         }
 
