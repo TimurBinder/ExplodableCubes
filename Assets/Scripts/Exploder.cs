@@ -7,7 +7,7 @@ public class Exploder : MonoBehaviour
     [SerializeField] private int _explosionRadius;
     [SerializeField] private ParticleSystem _effect;
 
-    public void Explode(List<Rigidbody> explodableObjects)
+    public void Explode(List<ExplodingBlock> explodableObjects)
     {
         if (_effect != null)
             Instantiate(_effect, gameObject.transform.position, Quaternion.identity);

@@ -22,7 +22,7 @@ public class ExplodingBlock : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        List<Rigidbody> explodableObjects = null;
+        List<ExplodingBlock> explodableObjects = null;
 
         if (Random.Range(_minCloningChance, _maxCloningChance) <= _cloningChance)
         {
