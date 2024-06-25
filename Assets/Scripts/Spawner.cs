@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class Spawner : MonoBehaviour
 {
     private readonly int _minClonesCount = 2;

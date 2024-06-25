@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 [RequireComponent(typeof(Spawner))]
 [RequireComponent (typeof(Exploder))]
 public class ExplodingBlock : MonoBehaviour
