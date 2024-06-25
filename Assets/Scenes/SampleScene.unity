@@ -846,7 +846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cloningChance: 100
-  _prefab: {fileID: 1824722668}
 --- !u!114 &1824722669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c10a8bca463dde46aea8968050f0b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefab: {fileID: 1824722668}
 --- !u!114 &1824722670
 MonoBehaviour:
   m_ObjectHideFlags: 0
