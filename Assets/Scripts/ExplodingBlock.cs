@@ -2,33 +2,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Spawner))]
+[RequireComponent (typeof(Exploder))]
 public class ExplodingBlock : MonoBehaviour
 {
-    [SerializeField] private int _explosionForce;
-    [SerializeField] private int _explosionRadius;
-    [SerializeField] private ParticleSystem _effect;
+    [SerializeField, Range(0, 100)] private float _cloningChance;
+    [SerializeField] private ExplodingBlock _prefab;
+
+    private readonly int _minCloningChance = 0;
+    private readonly int _maxCloningChance = 100;
+    private readonly int _cloningChanceDivider = 2;
+    private readonly int _scaleDivider = 2;
+
+    public void Enable()
+    {
+        GetComponent<Renderer>().material.color = new(Random.value, Random.value, Random.value);
+        transform.localScale /= _scaleDivider;
+        _cloningChance /= _cloningChanceDivider;
+    }
 
     private void OnMouseUpAsButton()
     {
-        Spawner spawner = GetComponent<Spawner>();
-        spawner.TryCreateClones(out List<Spawner> explodableObjects);
-        Explode(explodableObjects);
-    }
+        List<Rigidbody> explodableObjects = null;
 
-    private void Explode(List<Spawner> explodableObjects)
-    {
-        if (_effect != null)
-            Instantiate(_effect, gameObject.transform.position, Quaternion.identity);
-
-        if (explodableObjects != null)
+        if (Random.Range(_minCloningChance, _maxCloningChance) <= _cloningChance)
         {
-            foreach (var block in explodableObjects)
-            {
-                if (block.TryGetComponent<Rigidbody>(out Rigidbody rigidbody) == true)
-                    rigidbody.AddExplosionForce(_explosionForce, block.transform.position, _explosionRadius);
-            }
+            Spawner spawner = GetComponent<Spawner>();
+            explodableObjects = spawner.TryCreateClones(_prefab);
         }
 
-        Destroy(gameObject);
+        Exploder exploder = GetComponent<Exploder>();
+        exploder.Explode(explodableObjects);
     }
 }
