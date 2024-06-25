@@ -7,7 +7,6 @@ using UnityEngine;
 public class ExplodingBlock : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float _cloningChance;
-    [SerializeField] private ExplodingBlock _prefab;
 
     private readonly int _minCloningChance = 0;
     private readonly int _maxCloningChance = 100;
@@ -28,7 +27,7 @@ public class ExplodingBlock : MonoBehaviour
         if (Random.Range(_minCloningChance, _maxCloningChance) <= _cloningChance)
         {
             Spawner spawner = GetComponent<Spawner>();
-            explodableObjects = spawner.TryCreateClones(_prefab);
+            explodableObjects = spawner.TryCreateClones();
         }
 
         Exploder exploder = GetComponent<Exploder>();
