@@ -27,7 +27,7 @@ public class ExplodingBlock : MonoBehaviour
         if (Random.Range(_minCloningChance, _maxCloningChance) <= _cloningChance)
         {
             Spawner spawner = GetComponent<Spawner>();
-            explodableObjects = spawner.TryCreateClones();
+            explodableObjects = spawner.TryCreateClones(this);
         }
 
         Exploder exploder = GetComponent<Exploder>();
