@@ -858,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c10a8bca463dde46aea8968050f0b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1824722668}
 --- !u!114 &1824722670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,8 +870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f7f5cd84ad0714a83c062ba332e649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionForce: 70
-  _explosionRadius: 50
+  _explosionForce: 100
+  _explosionRadius: 30
+  _enhancedExplosionForceBonus: 50
+  _enhancedExplosionRadiusBonus: 10
   _effect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

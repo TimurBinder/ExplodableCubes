@@ -13,24 +13,35 @@ public class ExplodingBlock : MonoBehaviour
     private readonly int _cloningChanceDivider = 2;
     private readonly int _scaleDivider = 2;
 
+    private Renderer _renderer;
+    private Spawner _spawner;
+    private Exploder _exploder;
+
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
+        _spawner = GetComponent<Spawner>();
+        _exploder = GetComponent<Exploder>();
+    }
+
     public void Enable()
     {
-        GetComponent<Renderer>().material.color = new(Random.value, Random.value, Random.value);
+        _renderer.material.color = new(Random.value, Random.value, Random.value);
         transform.localScale /= _scaleDivider;
         _cloningChance /= _cloningChanceDivider;
+        _exploder.Enable();
     }
 
     private void OnMouseUpAsButton()
     {
-        List<ExplodingBlock> explodableObjects = null;
-
         if (Random.Range(_minCloningChance, _maxCloningChance) <= _cloningChance)
         {
-            Spawner spawner = GetComponent<Spawner>();
-            explodableObjects = spawner.TryCreateClones(this);
+            List<ExplodingBlock> explodableObjects = _spawner.TryCreateClones(this);
+            _exploder.Explode(explodableObjects);
         }
-
-        Exploder exploder = GetComponent<Exploder>();
-        exploder.Explode(explodableObjects);
+        else
+        {
+            _exploder.EnhancedExplode();
+        }
     }
 }
