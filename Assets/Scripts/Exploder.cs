@@ -12,16 +12,26 @@ public class Exploder : MonoBehaviour
     private float _enhancedExplosionForceBonusMultiplier = 2;
     private float _enhancedExplosionRadiusBonusMultiplier = 1.5f;
 
-    public void Enable()
+    public void Init()
     {
         _enhancedExplosionForceBonus *= _enhancedExplosionForceBonusMultiplier;
         _enhancedExplosionRadiusBonus *= _enhancedExplosionRadiusBonusMultiplier;
     }
 
-    public void Explode(List<ExplodingBlock> explodableObjects)
+    public void ExplodeHard()
+    {
+        float explosionForce = _explosionForce + _enhancedExplosionForceBonus;
+        float explosionRadius = _explosionRadius + _enhancedExplosionRadiusBonus;
+        List<ExplodingBlock> exploadableObjects = GetExplodableObjects(explosionRadius);
+
+        Explode(exploadableObjects, explosionForce, explosionRadius);
+    }
+
+    public void ExplodeNormal(List<ExplodingBlock> explodableObjects)
     {
         Explode(explodableObjects, _explosionForce, _explosionRadius);
     }
+
     private void Explode(List<ExplodingBlock> explodableObjects, float explosionForce, float explosionRadius)
     {
         float upwardsModifier = 1;
@@ -39,15 +49,6 @@ public class Exploder : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    public void EnhancedExplode()
-    {
-        float explosionForce = _explosionForce + _enhancedExplosionForceBonus;
-        float explosionRadius = _explosionRadius + _enhancedExplosionRadiusBonus;
-        List<ExplodingBlock> exploadableObjects = GetExplodableObjects(explosionRadius);
-
-        Explode(exploadableObjects, explosionForce, explosionRadius);
     }
 
     private List<ExplodingBlock> GetExplodableObjects(float explosionRadius)
